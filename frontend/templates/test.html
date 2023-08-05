@@ -1,0 +1,23 @@
+<h1>Articles</h1>
+<ul>
+{% for product in object_list %}
+    <li>{{ product }}</li>
+{% empty %}
+    <li>No product yet.</li>
+{% endfor %}
+</ul>
+<ul>
+    {% for group in view.get_groups %}
+        <li>{{ group }}</li>
+    {% empty %}
+        <li>No group yet.</li>
+    {% endfor %}
+</ul>
+
+<ul>
+    {% for manufacturer in view.get_manufacturers %}
+        <li>{{ manufacturer }}</li>
+    {% empty %}
+        <li>No manufacturer yet.</li>
+    {% endfor %}
+</ul>

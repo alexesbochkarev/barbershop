@@ -1,0 +1,55 @@
+{% load static %}
+
+{% with request.resolver_match.view_name as view_name %}
+
+  {% if view_name == 'headapp:index' %}
+
+    <nav class="main-navigation">
+      <a class="main-header-logo" href="#">
+        <img src="{% static 'img/index-logo.svg' %}" alt="Логотип Барбершопа Бородинский" width="371" height="155">
+      </a>
+      <div class="main-navigation-wrapper">
+        <div class="container">
+          <ul class="site-navigation">
+            <li><a href="info.html">Информация</a></li>
+            <li><a href="news.html">Новости</a></li>
+            <li><a href="{% url 'headapp:prices' %}">Прайс-лист</a></li>
+            <li><a href="{% url 'headapp:shop' %}"">Магазин</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+          <ul class="user-navigation">
+            <li><a class="login-link" href="form.html">Вход</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  {% else %}
+
+    <nav class="main-navigation container">
+      <a class="main-header-logo" href="{% url 'headapp:index' %}">
+          <img src="{% static 'img/logo.svg' %}" alt="Логотип Барбершопа Бородинский" width="111" height="24">
+      </a>
+      <ul class="site-navigation">
+          <li><a href="info.html">Информация</a></li>
+          <li><a href="news.html">Новости</a></li>
+          {% if view_name == 'headapp:prices' %}
+            <li class="site-navigation-current"><a>Прайс-лист</a></li>
+          {% else %}
+            <li><a href="{% url 'headapp:prices' %}">Прайс-лист</a></li>
+          {% endif %}
+          {% if view_name == 'headapp:shop' %}
+            <li class="site-navigation-current"><a>Магазин</a></li>
+          {% else %}
+            <li><a href="{% url 'headapp:shop' %}"">Магазин</a></li>
+          {% endif %}
+          <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+      <ul class="user-navigation">
+          <li><a class="login-link" href="form.html">Вход</a></li>
+      </ul>
+    </nav>
+    
+  {% endif %}
+  
+{% endwith %}
